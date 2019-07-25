@@ -1,6 +1,10 @@
 import Sequelize from 'sequelize';
 
+import User from '../app/models/User';
+
 import databaseConfig from '../config/database';
+
+const models = [User];
 
 class Database {
   constructor() {
@@ -9,14 +13,7 @@ class Database {
   }
 
   init() {
-    this.connection
-      .authenticate()
-      .then(() => {
-        console.log('Connection has been established successfully.');
-      })
-      .catch(err => {
-        console.error('Unable to connect to the database:', err);
-      });
+    models.forEach(model => model.init(this.connection));
   }
 }
 
