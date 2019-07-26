@@ -22,8 +22,8 @@ class User extends Model {
     return this;
   }
 
-  checkPassword() {
-    return bcrypt.compare(this.password, this.password_hash);
+  checkPassword(password) {
+    return bcrypt.compare(password, this.password_hash);
   }
 }
 
