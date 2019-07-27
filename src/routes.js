@@ -5,7 +5,7 @@ import UserController from './app/controllers/UserController';
 
 const routes = new Router();
 
-routes.post('/teste', SessionController.index);
+routes.post('/login', SessionController.index);
 
 routes.post('/users', UserController.store);
 
