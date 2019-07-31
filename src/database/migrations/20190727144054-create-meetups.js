@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      banner: {
+      file_id: {
         type: Sequelize.INTEGER,
         allowNull: true,
         references: {
