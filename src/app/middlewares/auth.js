@@ -3,6 +3,12 @@ import jwt from 'jsonwebtoken';
 import AuthConfig from '../../config/auth';
 
 export default async (req, res, next) => {
+  if (!req.headers.authorization) {
+    return res
+      .status(401)
+      .json({ error: 'Authorization not provided in request' });
+  }
+
   const [, token] = req.headers.authorization.split(' ');
 
   if (!token) {
@@ -11,7 +17,7 @@ export default async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, AuthConfig.secret);
-    req.body.userId = decoded.id;
+    req.userId = decoded.id;
   } catch (err) {
     return res.status(401).json('Token invalid');
   }
